@@ -62,6 +62,17 @@ Leia AGENTS.md e execute meu pedido seguindo o protocolo do vault.
 
 Depois fale normalmente como se tivesse falando com um assistente em linguagem natural.
 
+### De onde partem as ações: FOCUS e COMMITMENTS
+
+Entre todos os arquivos do vault, dois formam o painel que você e o agente olham o tempo todo:
+
+- **`FOCUS.md`** responde "o que fazer agora": a prioridade atual, o bloqueio crítico (se existir), no máximo 3 próximas ações e o que ficou fora do foco. Cabe em uma tela e não é backlog — ação concluída sai dali e vira histórico no projeto.
+
+- **`COMMITMENTS.md`** responde "quem deve o quê": compromissos com responsável, prazo e origem — seus, de clientes e de parceiros — ordenados do prazo mais próximo para o mais distante.
+
+Comece o dia por eles e faça as ações partirem deles: "onde foco agora?" antes de escolher em que trabalhar, "o que estou devendo?" antes de assumir algo novo. O agente opera do mesmo jeito — lê o `FOCUS.md` em toda sessão e, ao terminar qualquer tarefa, reavalia se a prioridade mudou. O resto do vault é memória de consulta; esses dois arquivos são o volante.
+
+
 ### Exemplos 
 
 Um único prompt pode misturar vários tipos de informação — o agente separa e grava cada um no lugar certo:
