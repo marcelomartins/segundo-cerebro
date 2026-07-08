@@ -43,7 +43,7 @@ A instalação é feita pelo próprio agente de IA, usando o arquivo [INSTALL.md
 1. Crie uma pasta vazia para o vault.
 2. Inicialize o GIT se quiser
 3. Abra um agente de IA com permissão de leitura e escrita nessa pasta (ex.: Claude Code).
-4. Entregue a ele o conteúdo de `FRAMEWORK_INSTALL.md` e peça para executar a instalação.
+4. Entregue a ele o conteúdo de `INSTALL.md` e peça para executar a instalação.
 
    ```text
    Execute a instalação descrita em @INSTALL.md
