@@ -11,7 +11,7 @@ Você conversa normalmente, o agente mantém a memória, e a próxima conversa c
 - **Pare de repetir contexto.** O agente já sabe quem são seus clientes, em que pé está cada projeto e o que já foi decidido — está tudo nos arquivos.
 - **Respostas baseadas em registro, não em achismo.** "O que estou devendo?" e "onde foco agora?" são respondidos a partir de `COMMITMENTS.md` e `FOCUS.md`, não da memória da conversa.
 - **Conversas viram memória organizada.** Emails, reuniões e decisões são processados e distribuídos para o arquivo certo, com link entre projetos, pessoas e empresas.
-- **Trilha auditável.** Toda alteração do agente fica registrada com data e motivo — e versionada em git, se você quiser.
+- **Trilha auditável.** Cada ação coesa do agente registra seu grupo de arquivos com data e motivo e termina em um commit local próprio, sem misturar mudanças de outros trabalhos.
 - **Nenhuma dependência de plataforma.** Funciona com Claude, ChatGPT, Gemini ou qualquer agente que leia e escreva arquivos. Troque de IA sem perder nada: a memória é sua, em texto simples, sem banco de dados nem app proprietário.
 
 Não precisa ser programador nem conhecer métodos de organização pessoal: se você sabe conversar com uma IA e abrir uma pasta de arquivos, sabe usar o framework.
@@ -29,24 +29,28 @@ Não precisa ser programador nem conhecer métodos de organização pessoal: se 
 
 O coração do sistema é o `AGENTS.md`, criado na instalação: um arquivo de regras que funciona como o sistema operacional do vault. Ele ensina qualquer agente onde cada informação mora, o que ler antes de responder e o que registrar antes de encerrar. É esse arquivo que torna o vault portável entre agentes: as regras moram nos arquivos, não na IA.
 
+### Convenção de datas
+
+Datas visíveis são escritas como `DD/MM/AAAA` ou por extenso — por exemplo, `05/08/2026` ou `5 de agosto de 2026`. O formato `AAAA-MM-DD` fica restrito a nomes técnicos de arquivos e pastas datados, nos quais a barra não pode ser usada e a ordem ano-mês-dia preserva a ordenação cronológica. Toda coleção de arquivos datados é agrupada em subpastas `AAAA-MM`; templates e arquivos de apoio permanecem na raiz. Assim, `Meetings/2026-08/2026-08-05 - Reunião.md` mostra `05/08/2026` dentro da nota.
+
 ## O que este framework não é
 
 - **Não é um app.** É uma pasta de arquivos de texto mais um protocolo que os agentes seguem.
-- **Não é lista de tarefas nem calendário.** Ele organiza prioridade e ordem de trabalho; no framework, "agenda" significa o que fazer e em que ordem, nunca horário do dia.
+- **Não é lista de tarefas nem calendário.** Ele organiza prioridade e ordem de trabalho; no framework, "agenda" significa o que fazer e em que ordem, nunca horário do dia. Tarefas com data passam na frente de prioridades sem data.
 - **Não é um sistema para colecionar artigos e destaques de leitura.** O foco é memória operacional de trabalho, não biblioteca.
 - **Não é automação mágica.** O valor vem do hábito de registrar, revisar e manter; a IA reduz o esforço, mas não elimina o ritual.
 
 ## Como instalar
 
-A instalação é feita pelo próprio agente de IA, usando o arquivo [INSTALL.md](INSTALL.md):
+A instalação é feita pelo próprio agente de IA, usando o arquivo [FRAMEWORK_INSTALL.md](FRAMEWORK_INSTALL.md):
 
 1. Crie uma pasta vazia para o vault.
 2. Inicialize o GIT se quiser
 3. Abra um agente de IA com permissão de leitura e escrita nessa pasta (ex.: Claude Code).
-4. Entregue a ele o conteúdo de `INSTALL.md` e peça para executar a instalação.
+4. Entregue a ele o conteúdo de `FRAMEWORK_INSTALL.md` e peça para executar a instalação.
 
    ```text
-   Execute a instalação descrita em @INSTALL.md
+   Execute a instalação de @FRAMEWORK_INSTALL.md
    ```
 
 5. Responda às perguntas de calibração: quem você é, seus clientes, projetos e objetivos.
@@ -66,12 +70,10 @@ Depois fale normalmente como se tivesse falando com um assistente em linguagem n
 
 Entre todos os arquivos do vault, dois formam o painel que você e o agente olham o tempo todo:
 
-- **`FOCUS.md`** responde "o que fazer agora": a prioridade atual, o bloqueio crítico (se existir), no máximo 3 próximas ações e o que ficou fora do foco. Cabe em uma tela e não é backlog — ação concluída sai dali e vira histórico no projeto.
+- **`FOCUS.md`** responde "o que fazer agora": a prioridade atual, o bloqueio crítico (se existir), no máximo 3 próximas ações e os poucos projetos ativos que ficaram fora do foco, mas podem retornar. Cabe em uma tela e não é backlog — não repete itens já em foco e ação concluída sai dali para o histórico do projeto.
+- **`COMMITMENTS.md`** responde "quem deve o quê": compromissos com responsável, prazo e origem — seus, de clientes e de parceiros — ordenados do prazo mais próximo para o mais distante. O título usa a data do compromisso, não a data de inclusão; concluídos ficam em bloco separado e saem desse arquivo após 30 dias.
 
-- **`COMMITMENTS.md`** responde "quem deve o quê": compromissos com responsável, prazo e origem — seus, de clientes e de parceiros — ordenados do prazo mais próximo para o mais distante.
-
-Comece o dia por eles e faça as ações partirem deles: "onde foco agora?" antes de escolher em que trabalhar, "o que estou devendo?" antes de assumir algo novo. O agente opera do mesmo jeito — lê o `FOCUS.md` em toda sessão e, ao terminar qualquer tarefa, reavalia se a prioridade mudou. O resto do vault é memória de consulta; esses dois arquivos são o volante.
-
+Comece o dia por eles e faça as ações partirem deles: primeiro datas em `COMMITMENTS.md`, depois foco em `FOCUS.md`. "Onde foco agora?" deve considerar prazos vencidos, prazos de hoje e tarefas com data planejada antes de prioridades sem data. Compromisso vencido nunca é carregado silenciosamente: precisa ser concluído com resultado, receber uma nova data ou ser sinalizado para confirmação. O agente opera do mesmo jeito — lê o `FOCUS.md` em toda sessão, cruza com `COMMITMENTS.md` antes de ranquear trabalho e, ao terminar qualquer tarefa, reavalia se a prioridade mudou. O resto do vault é memória de consulta; esses dois arquivos são o volante.
 
 ### Exemplos 
 
@@ -92,12 +94,12 @@ Reunião de hoje com a Acme sobre o projeto Novo Site:
 
 Com esse prompt, o agente:
 
-1. Cria a nota da reunião em `Meetings/AAAA-MM-DD - Acme - Novo Site.md`.
-2. Registra a decisão do WordPress em `Decisions/`, com motivo e alternativa descartada.
+1. Cria a nota da reunião em `Meetings/AAAA-MM/AAAA-MM-DD - Acme - Novo Site.md`.
+2. Registra a decisão do WordPress em `Decisions/AAAA-MM/`, com motivo e alternativa descartada.
 3. Adiciona os dois compromissos em `COMMITMENTS.md`, cada um com responsável e prazo em data absoluta ("sexta" vira a data real).
 4. Atualiza o `PROJECT.md` e o `LOG.md` do projeto, incluindo o risco do servidor.
 5. Anota a preferência de comunicação do João em `People/`.
-6. Registra o resumo e as alterações no `Daily/` do dia.
+6. Registra o resumo e as alterações no `Daily/AAAA-MM/` do dia.
 
 Na conversa, você recebe só o fechamento: o que mudou, em quais arquivos e qual a próxima ação.
 
@@ -109,7 +111,7 @@ No fim do dia (ou no começo do seguinte), rode a consolidação noturna — a z
 Leia AGENTS.md e execute a consolidação noturna conforme rotinas.md.
 ```
 
-O agente tria o que ficou no `Inbox/`, cria fichas que faltaram (pessoas, empresas e projetos citados no dia), reconcilia os rótulos de `FOCUS.md` e dos mapas com o estado real dos projetos, aponta duplicatas e links quebrados, confere o resumo do dia no `Daily/` e fecha com um relatório: o que foi feito e o que precisa de decisão humana amanhã.
+O agente tria o que ficou no `Inbox/`, cria fichas que faltaram (pessoas, empresas e projetos citados no dia), reconcilia os rótulos de `FOCUS.md` e dos mapas com o estado real dos projetos, aponta duplicatas e links quebrados, trata ou sinaliza compromissos vencidos, confere o resumo do dia no `Daily/AAAA-MM/` e fecha com um relatório: o que foi feito e o que precisa de decisão humana amanhã.
 
 É zeladoria, nunca decisão: a rotina não muda prioridade, não assume compromisso e não apaga histórico. Comece rodando manualmente; automatize só quando o ritual estiver rodando bem.
 
@@ -122,8 +124,8 @@ Cada tipo de informação tem um endereço fixo. O instalador cria estas camadas
 | Protocolo | `AGENTS.md`, `rotinas.md` | Regras de operação, roteamento e rotinas. |
 | Identidade | `user.md`, `agent_behavior.md`, `identity.md` | Quem é o usuário e como o agente decide, fala e escala. |
 | Operação | `FOCUS.md`, `COMMITMENTS.md` | Prioridade atual, bloqueio, próximas ações e compromissos. |
-| Projetos | `Projects/Cliente/Projeto/` | Cada projeto tem `PROJECT.md`, `LOG.md` e `DOCUMENTS.md`. |
-| Memória | `Companies/`, `People/`, `Decisions/`, `Meetings/`, `Areas/`, `Knowledge/`, `MOC/`, `Daily/` | Contexto consolidado e navegável. |
+| Projetos | `Projects/Cliente/Projeto/` | Cada projeto tem `PROJECT.md`, `LOG.md` e `ARTIFACTS.md`; ações, compromissos e status aparecem primeiro. |
+| Memória | `Companies/`, `People/`, `Decisions/AAAA-MM/`, `Meetings/AAAA-MM/`, `Areas/`, `Knowledge/`, `MOC/`, `Daily/AAAA-MM/` | Contexto consolidado e navegável; coleções datadas agrupadas por ano-mês. |
 | Entrada | `Inbox/` | Material bruto ainda não processado. |
 | Arquivo frio | `Archive/` | Histórico concluído ou fora do caminho quente. |
 
@@ -173,7 +175,16 @@ Opcional:
 - Git para versionar o vault e auditar cada mudança.
 - Obsidian Sync, Google Drive ou equivalente para acesso em mais de um dispositivo.
 
+## Este repositório e o seu vault
+
+O framework é distribuído em três arquivos:
+
+- `FRAMEWORK_README.md`: este arquivo — visão geral, uso e decisões de projeto.
+- `FRAMEWORK_INSTALL.md`: o instalador completo que constrói o vault.
+- `LICENSE`: a licença de uso (MIT).
+
+O seu vault é outra coisa: ele nasce na sua máquina, contém contexto real de trabalho e deve ficar privado. Nunca publique o vault; compartilhe apenas estes três arquivos.
 
 ## Licença
 
-Distribuído sob a licença MIT: use, copie, modifique e redistribua livremente, inclusive para uso comercial. A única exigência é manter o aviso de copyright e o texto da licença nas cópias.
+Distribuído sob a licença [MIT](LICENSE): use, copie, modifique e redistribua livremente, inclusive para uso comercial. A única exigência é manter o aviso de copyright e o texto da licença nas cópias.
