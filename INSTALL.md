@@ -19,7 +19,7 @@ Installation by an agent with file access, without an additional executor. The p
 
 Use a single absolute path <VAULT_ROOT>, without automatically adding subfolders. Do not install into a literal placeholder. Calculate the SHA-256 of this installer's bytes and record its source and known revision. Downloading, if authorized, precedes local installation.
 
-If neither AGENTS nor vault_meta contains content, treat this as a new/partial installation and preserve other existing data. If a protocol exists, read both before writing. Consistent version 1.4.0 in both, with a compatible or partial structure, allows resuming through targeted edits. An earlier, missing, or inconsistent version requires a concrete migration plan before mixing files; perform migration only if the request authorizes it.
+If neither AGENTS nor vault_meta contains content, treat this as a new/partial installation and preserve other existing data. If a protocol exists, read both before writing. Consistent version 2.0.0 in both, with a compatible or partial structure, allows resuming through targeted edits. An earlier, missing, or inconsistent version requires a concrete migration plan before mixing files; perform migration only if the request authorizes it.
 
 ### Migration from earlier versions
 
@@ -57,7 +57,7 @@ Create the files below from the fenced contents, localizing their user-facing po
 ````
 # AGENTS
 
-Protocol version: 1.4.0.
+Protocol version: 2.0.0.
 
 ## Before every command
 
@@ -1021,7 +1021,7 @@ If Git becomes unavailable, remove only this extension's enablement from AGENTS,
 
 ## Phase G — Metadata and Git
 
-Fill in vault_meta with version 1.4.0, a readable date, source, known revision, SHA-256, and requested mode (auto or off). The structure remains partial until Phase V. On resumption, preserve the original installation's source/date/hash and record the current execution in the notes. Preserve the action counter.
+Fill in vault_meta with version 2.0.0, a readable date, source, known revision, SHA-256, and requested mode (auto or off). The structure remains partial until Phase V. On resumption, preserve the original installation's source/date/hash and record the current execution in the notes. Preserve the action counter.
 
 Off mode: record disabled; do not create or enable versionamento.md. In auto, verify that the Git executable actually exists and check the repository's own root. If absent or initialization/verification fails, record unavailable and continue with Daily, without commit rules. Do not use the parent folder's repository.
 
@@ -1079,7 +1079,7 @@ Ignore Templates/, examples, and on-demand files not yet needed when scanning fo
 ## Phase V — Verification
 
 - [ ] All common files in Section 3 and the 14 central templates exist. An actual journal has been created; content folders were not manufactured without a real case.
-- [ ] AGENTS declares 1.4.0, stays within 80 lines/900 words, and requires full review of both panels before/after every command.
+- [ ] AGENTS declares 2.0.0, stays within 80 lines/900 words, and requires full review of both panels before/after every command.
 - [ ] user.md records one preferred language and its basis. Replies, questions, reports, and user-facing portions of new notes and templates use that language unless explicitly requested otherwise. Agent-facing instructions stay in English; technical identifiers, YAML values, literal captures, and existing history are preserved.
 - [ ] Localized headings, fields, and readable states follow the same rules as their English equivalents. Links resolve after localization; no parallel English sections, duplicate records, or translated copies were added.
 - [ ] FOCUS is the only source of ALL open actions, including project and standalone actions. Only Now has a limit of 3; the whole file may have 100 or more, without truncating, hiding, or discarding items.
