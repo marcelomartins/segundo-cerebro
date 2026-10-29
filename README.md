@@ -1,6 +1,6 @@
 # Segundo Cérebro Digital
 
-Memória operacional para agentes de IA em arquivos Markdown locais. **Versão 1.3.0.**
+Memória operacional para agentes de IA em arquivos Markdown locais. **Versão 2.0.**
 
 Você conversa normalmente; o agente registra ações, promessas, decisões e contexto útil nos arquivos certos. A memória fica sob seu controle e pode ser consultada em outra sessão ou por outro agente com acesso ao vault.
 
